@@ -7,6 +7,8 @@
  * Author: Jeremy Pry
  * Author URI: http://jeremypry.com/
  * GitHub Plugin URI: PrysPlugins/wc-no-override-individual-use-coupon
+ * WC requires at least: 3.0.0
+ * WC tested up to: 3.4.0
  * License: GPL2
  */
 
@@ -19,9 +21,11 @@ add_filter( 'woocommerce_apply_individual_use_coupon', 'jpry_no_override_individ
 /**
  * Don't allow other single-use coupons to override existing single-use coupons.
  *
- * @param array     $keep
- * @param WC_Coupon $new_coupon
- * @param string[]  $applied_coupons
+ * @param string[]  $keep            The array of coupon codes to keep.
+ * @param WC_Coupon $new_coupon      The new coupon being applied.
+ * @param string[]  $applied_coupons Array of currently applied coupon codes.
+ *
+ * @return array The filtered array of coupons to keep.
  */
 function jpry_no_override_individual_use_coupons( $keep, $new_coupon, $applied_coupons ) {
 	foreach ( $applied_coupons as $applied_coupon ) {
